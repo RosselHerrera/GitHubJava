@@ -1,0 +1,25 @@
+/* Estilos para Kanban Board 
+*
+*  Refactor by Lozoronca 2012
+*
+*/
+
+
+.Dragable{
+	cursor:move;
+   -moz-user-select: -moz-none;   
+   -khtml-user-select: none;   
+   -webkit-user-select: none;   
+   -o-user-select: none;   
+   user-select: none;
+   width: 120px; 
+   height:70px; 
+   padding: 3px;
+}
+
+.DropTarget{
+	width: 200px; 
+	height:200px; 
+	background-color: LightBlue;
+	border: 3px solid white;
+}

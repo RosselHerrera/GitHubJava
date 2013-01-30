@@ -1,0 +1,98 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page import="java.io.*, java.util.*, java.text.*"%>
+
+<%@ page import = "mantenedores.MBackLogSelect"%>
+<%@ page import = "dto.DTOBackLog" %>
+
+<%
+	String Fecha = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+	String Hora  = new SimpleDateFormat("HH:mm:ss").format(new Date()); 
+%>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link type=text/css rel=stylesheet media=all href="../../css/kanban.css">
+<script type="text/javascript" src="../../js/kanbanOff.js"></script>
+<title>KANBAN::POS-IT</title>
+</head>
+<body bgcolor=#000000 onload="OnLoad()">
+
+<div align=center>
+
+	<table width=1024 align=center border=0 cellspacing=2 celpadding=2>
+		<tr>
+			<td align=left>
+				<img src="../../images/BrandingKanbanL.png"> 
+			</td>
+		</tr>
+		<tr>
+			<td align=center>
+				<img src="../../images/LineaTiempo.png">
+			</td>
+		</tr>
+	</table>
+			
+	<table width=1024  height=100% border=0 cellspacing=1 celpadding=1 bgcolor=#ffffff>
+
+		<!-- <tr bgcolor=#fffcfc>
+			<td colspan=3 height=40 align=center>
+			<font face=Tahoma size=5 color=#000000><b>KANBAN BOARD  (Mueve la Etiqueta)</b></font>
+			</td>
+		</tr> -->
+		
+		<tr bgcolor=#000000>
+			<td width=424 height=20 align=center bgcolor=#1C1C1C>
+			<font face=Tahoma size=3 color=#fffcfc><b><i>HISTORIAS</i></b> (BackLog Product)</font>
+			</td>
+			<td width=300 align=center bgcolor=#1C1C1C>
+			<font face=Tahoma size=3 color=#fffcfc><b><i>EN CURSO</i></b> (WIP)</font>
+			</td>
+			<td width=300 align=center bgcolor=#1C1C1C>
+			<font face=Tahoma size=3 color=#fffcfc><b><i>CERRADO</i></b>(Close)</font>
+			</td>
+		</tr>
+		<tr>              
+			<td width=424 align=center  bgcolor=#1C1C1C > <!-- BACKGROUND="../../images/movilidad.png" -->
+				<%
+				/* -------------------------------  */
+				MBackLogSelect backlog   = new MBackLogSelect();
+				ArrayList backlogs = backlog.ListaBackLogs();
+				/* -------------------------------  */
+				Iterator itBL = backlogs.iterator();
+				while (itBL.hasNext()){
+					DTOBackLog obBL = (DTOBackLog) itBL.next();%>
+					<div id=<%=obBL.getID()%> class="Dragable" selectable="no" style="background-color:<%=obBL.getDetalle3()%>; border-width: 2px; border-style: dotted; border-color: #FFDD2A;">
+						<font face=Tahoma size=1 color=#00000f><b><%=obBL.getActividad() %></b><br><%=obBL.getDetalle1()%><br><%=obBL.getDetalle2()%></font>
+						<br><br>
+						<div style="background-color:#FFDD2A; border-color:red; border-width: 1px; border-style:solid">
+							<font face=Tahoma size=1 color=#ff0000><%=obBL.getFecha()%></font>
+						</div>
+					</div>
+				<%}%>
+				</td>
+				
+				<td width=300 align=center bgcolor=#1C1C1C>
+					<div style="height : 240px">&nbsp;</div> 
+					<table width=300 border=0 cellspacing=1 celpadding=1 bgcolor=#ffffff>
+						<tr bgcolor=#000000>
+							<td width=300 bgcolor=#1C1C1C>
+								<font face=Tahoma size=2 color=#fffcfc><b><i>EN ESPERA</i></b> (Waiting)</font>
+							</td>
+						</tr>
+						<tr bgcolor=#000000>
+							<td width=300 bgcolor=#1C1C1C>
+								<div style="height : 340px">&nbsp;</div>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td width=300 align=center bgcolor=#1C1C1C>
+					
+				</td>
+			</tr>				
+	</table>
+	<br />
+</div>
+	<!-- </form> -->
+</body>
+</html>

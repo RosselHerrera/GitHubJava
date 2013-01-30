@@ -1,0 +1,130 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link type=text/css rel=stylesheet media=all href=../../css/kanban.css>
+<script type="text/javascript" src="../js/kanban.js"></script>
+<title>Codigo Mupor</title>
+</head>
+<body onload="OnLoad()">
+
+<div align=center>
+	
+	<table width=1024 align=center border=0 cellspacing=1 celpadding=1>
+		<tr>
+			<td align=left>
+				<img src="../../images/BrandingKanbanL.png"> 
+			</td>
+		</tr>
+		<tr>
+			<td align=center>
+				<img src="../../images/LineaTiempo.png">
+			</td>
+		</tr>
+	</table>
+	<br/>
+	
+	<pre>
+	<div align=left>	
+		import java.util.*;
+
+		/**
+		   This program sorts a set of item by comparing
+		   their descriptions.
+		*/
+		public class TreeSetTest
+		{  
+		   public static void main(String[] args)
+		   {  
+		      SortedSet parts = new TreeSet();
+		      parts.add(new Item("Toaster", 1234));
+		      parts.add(new Item("Widget", 4562));
+		      parts.add(new Item("Modem", 9912));
+		      System.out.println(parts);
+		
+		      SortedSet sortByDescription = new TreeSet(new
+		         Comparator()
+		         {  
+		            public int compare(Object a, Object b)
+		            {  
+		               Item itemA = (Item)a;
+		               Item itemB = (Item)b;
+		               String descrA = itemA.getDescription();
+		               String descrB = itemB.getDescription();
+		               return descrA.compareTo(descrB);
+		            }
+		         });
+		
+		      sortByDescription.addAll(parts);
+		      System.out.println(sortByDescription);
+		   }
+		}
+	</div>
+	</pre>
+	
+	<br/>
+	
+	<pre>
+	<div align=left>
+		class Item implements Comparable
+		{ 
+		   /**
+		      Constructs an item.
+		      @param aDescription the item's description
+		      @param aPartNumber the item's part number
+		   */
+		   public Item(String aDescription, int aPartNumber)
+		   {  
+		      description = aDescription;
+		      partNumber = aPartNumber;
+		   }
+		
+		   /**
+		      Gets the description of this item.
+		      @return the description
+		   */
+		   public String getDescription()
+		   {  
+		      return description;
+		   }
+		
+		   public String toString()
+		   {  
+		      return "[descripion=" + description
+		         + ", partNumber=" + partNumber + "]";
+		   }
+		
+		   public boolean equals(Object other)
+		   {  
+		      if (getClass() == other.getClass())
+		      {  Item otherItem = (Item)other;
+		         return description.equals(otherItem.description)
+		            && partNumber == otherItem.partNumber;
+		      }
+		      else
+		         return false;
+		   }
+		
+		   public int hashCode()
+		   {  
+		      return 13 * description.hashCode() + 17 * partNumber;
+		   }
+		
+		   public int compareTo(Object other)
+		   {  
+		      Item otherItem = (Item)other;
+		      return partNumber - otherItem.partNumber;
+		   }
+		
+		   private String description;
+		   private int partNumber;
+		}
+	</div>
+	</pre>
+		
+	<br/>
+	
+</div>
+</body>
+</html>

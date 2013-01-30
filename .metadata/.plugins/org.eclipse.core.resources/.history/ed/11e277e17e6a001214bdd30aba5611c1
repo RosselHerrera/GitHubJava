@@ -1,0 +1,79 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link type=text/css rel=stylesheet media=all href=../css/kanban.css>
+<script type="text/javascript" src="../js/kanban.js"></script>
+<title>Kanban JSP View DD</title>
+</head>
+<body bgcolor=#000f0f onload="OnLoad()">
+
+<div align=center>
+	
+	<table width=1024 align=center border=0 cellspacing=1 celpadding=1>
+		<tr>
+			<td align=left>
+				<img src="../images/BrandingKanbanL.png"> 
+			</td>
+		</tr>
+		<tr>
+			<td align=center>
+				<img src="../images/LineaTiempo.png">
+			</td>
+		</tr>
+	</table>
+	
+	<table width=1024  height=480 border=0 cellspacing=1 celpadding=1>
+		<!-- <tr bgcolor=#fffcfc>
+			<td colspan=3  height=40  align=center>
+				<font face=Tahoma size=3 color=#000000><b>DESAFIO KANBAN</b></font>	
+			</td>
+		</tr>
+		<tr bgcolor=#fffcfc>
+			<td colspan=3 height=20 align=center>
+				<font face=Tahoma size=2 color=#A4A4A4><b>LINEA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;de&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TIEMPO</b></font>	
+			</td>
+		</tr> -->
+		<tr height=15 align=center bgcolor=#fffcfc>
+			<td width=424 height=20 align=center bgcolor=#fcf0ad>
+				<font face=Tahoma size=2 color=#000000><b>POR HACER</b></font>
+			</td>
+			<td width=300 align=center bgcolor=#ffdd2a>
+				<font face=Tahoma size=2 color=#000000><b>HACIENDO</b></font>
+			</td>
+			<td width=300 align=center bgcolor=#f9a55b>
+				<font face=Tahoma size=2 color=#000000><b>HECHO</b></font>
+			</td>
+		</tr>
+		<tr>
+			<td width=424 align=center bgcolor=#fffcfc>
+				<div id=1 class="Dragable" selectable="no" style="background-color:#F4FA58;">
+					<font face=Tahoma size=1 color=#000000>OBJETIVO 1:1	Observar o inferir si el orden debe ser secuencial</font>
+				</div>
+				<div id=2 class="Dragable" selectable="no" style="background-color:#F4FA58;">
+					<font face=Tahoma size=1 color=#000000>OBJETIVO 2:1 Observar como identificar y guardar ultima posicion en pantalla</font>
+				</div>
+				<div id=3 class="Dragable" selectable="no" style="background-color:#FFFF00;">
+					<font face=Tahoma size=1 color=#000000>OBJETIVO 3:3 Convertir a jsp y extractar js y css refactorizado</font>
+				</div>
+				<div id=4 class="Dragable" selectable="no" style="background-color:#F7D358;">
+					<font face=Tahoma size=1 color=#000000>OBJETIVO 4:8 Construir modelo de persistencia para el tablero</font>
+				</div>
+				<div id=5 class="Dragable" selectable="no" style="background-color:#F7D358;">
+					<font face=Tahoma size=1 color=#000000>OBJETIVO 5:8 Prototipar pantallas de captura de objetivos</font>
+				</div>
+				<div id=6 class="Dragable" selectable="no" style="background-color:#FF8000;">
+					<font face=Tahoma size=1 color=#000000>OBJETIVO 6:13 Implementar funcionalidades de mantenimiento del tablero</font>
+				</div>
+				<div id=7 class="Dragable" selectable="no" style="background-color:#FF8000;">
+					<font face=Tahoma size=1 color=#000000>OBJETIVO 7:13  Probar las funcionalidades de mantenimiento del tablero</font>
+				</div>
+			</td>
+			<td width=300 align=center bgcolor=#fffccc></td>
+			<td width=300 align=center bgcolor=#fcfcfc></td>
+		</tr>
+	</table>	
+	<br />
+</div>
+</body>
+</html>

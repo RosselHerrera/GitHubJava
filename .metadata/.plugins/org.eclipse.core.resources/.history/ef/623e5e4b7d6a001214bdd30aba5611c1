@@ -1,0 +1,90 @@
+package test.transformaciones;
+
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class GeneraProcesoReqMvld {
+	
+	public static void main(String[] args)
+    {
+    	String HoraIni       = new SimpleDateFormat("HH:mm:ss").format(new Date());	
+    	String nomcomp       = "ProcesoReqMvldCDBKX022";
+    	String titulo        = "Consulta Movimientos Acciones Compra";
+    	String seqReq        = "ProcesoReqMvldCDBKX022.xml";
+    	String seqRsp        = "ProcesoRspMvldCDBKX022.xml";
+    	String wsdl          = "ws_mvldCDBKX022.wsdl";
+    	String ruta			 = "sequences/medMvldad/CompraVentaAcciones/Venta/";
+    	
+    	String rutaxsl		 = "xslt/CompraVentaAcciones/Venta/";
+    	String ws_xslt       = "ws_CDBKX022_input.xsl";
+    	/*
+    	RUT_CLIENTE
+    	CARTERA_CUENTA_NROCUENTA
+    	SEGMENTO
+    	MATRIZDESAFIO
+    	MSGID
+    	*/
+    	String[] params      = {"//RUT_CLIENTE", "//MSGID"};
+    	String[] paramNombre = {"CTX_RUT_CLIENTE", "CTX_MSGID"};
+    	String[] pramxslt    = {"PRUT_CLIENTE",  "PMSGID"};
+    			
+        FileWriter fichero = null;
+        PrintWriter pw = null;
+        
+        try
+        {
+            fichero = new FileWriter("c:/Users/Lozoronca/Documents/" + nomcomp + ".xml");
+            pw = new PrintWriter(fichero);
+
+            for (int i = 0; i < 1; i++){	
+            	/* Cabecera ws_<name>_input   */
+            	pw.println("<sequence name=" + "\"" + nomcomp + "\"" + " xmlns=" + "\"" + "http://ws.apache.org/ns/synapse" + "\"" + ">");
+            	pw.println("\t<log level=" + "\"" + "full" + "\"" + "/>"); 
+            	pw.println("\t\t<property action=" + "\"" + "remove" + "\"" + "name=" + "\"" + "Content-Length" + "\"" + "scope=" + "\"" + "transport" + "\"" + " />");          
+            	pw.println("\t\t<property action=" + "\"" + "remove" + "\"" + "name=" + "\"" + "Accept-Encoding" + "\"" + "scope=" + "\"" + "transport" + "\"" + "/>");	      		 	 
+            	pw.println("\t\t<property action=" + "\"" + "remove" + "\"" + "name=" + "\"" + "User-Agent" + "\"" + "scope=" + "\"" + "transport" + "\"" + "/>");
+            	pw.println("\t\t<property action=" + "\"" + "remove" + "\"" + "name=" + "\"" + "Content-Type" + "\"" + "scope=" + "\"" + "transport" + "\"" + "/>\n");
+        				
+            	pw.println("\t<log level=" + "\"" + "custom" + "\"" + ">");
+            	pw.println("\t\t<property name=" + "\"" + "REQUEST" + "\"" + "value=" + "\"" + "# WS_CDBKX022 :: 1. SOAP MESSAGE BEFORE SERVICE INVOKE  #" + "\"" + "/>");
+            	pw.println("\t</log>");
+            	
+            	for (int j = 0; j < paramNombre.length; j++){	
+            		pw.println("\t<property name=" + "\"" + paramNombre[j]  + "\"" +  "	expression=" + "\"" + "fn:normalize-space(" + params[j] + "\"" + "/>");            		
+            	}
+            	pw.println("\n\t<xslt key=" + "\"" + rutaxsl  +  ws_xslt + "\"" + ">");
+            	for (int k = 0; k < paramNombre.length; k++){
+            		pw.println("\t\t<property name=" + "\"" + pramxslt[k] + "\"" + " expression=" + "\"" + "get-property('" + paramNombre[k] + "')" + "\"" + "/>");
+            	}
+            	pw.println("\t</xslt>");
+            	pw.println("\t<log level=" + "\"" + "full" + "\"" +  "/>");
+            	pw.println("\t<property name=" + "\"" + "CHARACTER_SET_ENCODING" + "\"" +  "scope=" + "\"" + "axis2" + "\"" + "value=" + "\"" + "ISO-8859-1" + "\"" + "/>");
+            	pw.println("\t<send>");
+            	pw.println("\t\t<endpoint>");
+            	pw.println("\t\t\t<address uri=" + "\"" + "ae:/Request?transport.jms.ConnectionFactory=myQueueConnectionFactoryMovilidad&amp;transport.jms.ae.msgType=x-application/mtFormatter&amp;transport.jms.ae.MTService=Mvld_HS_CDBKX022&amp;transport.jms.ReplyDestination=Response" + "\"" + "/>");
+            	pw.println("\t\t</endpoint>");
+            	pw.println("\t</send>");
+            	pw.println("</sequence>");
+            	
+            }   
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+           try {
+           // Nuevamente aprovechamos el finally para 
+           // asegurarnos que se cierra el fichero.
+           String HoraFin  = new SimpleDateFormat("HH:mm:ss").format(new Date());
+           System.out.println("Tiempo Proceso : Inicio " + HoraIni + " : Fin " + HoraFin );
+           
+           if (null != fichero)
+              fichero.close();
+           } catch (Exception e2) {
+              e2.printStackTrace();
+           }
+        }
+    }
+
+}

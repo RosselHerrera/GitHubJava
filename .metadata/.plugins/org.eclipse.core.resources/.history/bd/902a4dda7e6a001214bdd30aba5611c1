@@ -1,0 +1,118 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link type=text/css rel=stylesheet media=all href=../../css/kanban.css>
+<script type="text/javascript" src="../js/kanban.js"></script>
+<title>Codigo Mupor</title>
+</head>
+<body onload="OnLoad()">
+
+<div align=center>
+	
+	<table width=1024 align=center border=0 cellspacing=1 celpadding=1>
+		<tr>
+			<td align=left>
+				<img src="../../images/BrandingKanbanL.png"> 
+			</td>
+		</tr>
+		<tr>
+			<td align=center>
+				<img src="../../images/LineaTiempo.png">
+			</td>
+		</tr>
+	</table>
+	<br />
+
+<pre>
+<div align=left>
+		import java.util.*;
+		
+		public class MapTest {
+		
+			/**
+			 * @param args
+			 */
+			public static void main(String[] args)
+			   {  
+			      Map staff = new LinkedHashMap(101,0.75F,true);
+			      staff.put("144-25-5464", new Empleado("Angela Hung"));
+			      staff.put("567-24-2546", new Empleado("Harry Hacker"));
+			      staff.put("157-62-7935", new Empleado("Gary Cooper"));
+			      staff.put("456-62-5527", new Empleado("Francesca Cruz"));
+		
+			      // Imprime Entradas
+		
+			      System.out.println(staff);
+		
+			      // remueve una entrada
+		
+			      staff.remove("567-24-2546");
+		
+			      // reemplaza una entrada
+		
+			      staff.put("456-62-5527", new Empleado("Francesca Miller"));
+		
+			      // mira un valor
+		
+			      System.out.println(staff.get("157-62-7935"));
+		
+			      // Itera a traaves de las entradas
+		
+			      Set entries = staff.entrySet();
+			      Iterator iter = entries.iterator();
+			      while (iter.hasNext())
+			      {  
+			         Map.Entry entry = (Map.Entry)iter.next();
+			         Object key = entry.getKey();
+			         Object value = entry.getValue();
+			         System.out.println("key=" + key + ", value=" + value);
+			      }
+			   }
+		
+		}
+</div>
+</pre>	
+
+<pre>
+<div align=left>
+		/**
+		Una clase Empleado minimalista para testear.
+		*/
+		class Empleado
+		{ 
+			/**
+			   Constructor de un empleado con salrio $0
+			   @param n the employee name
+			*/
+			public Empleado(String n)
+			{  
+			   name = n;
+			   salary = 1800000;
+			}
+			
+			public String toString()
+			{  
+			   return "[name=" + name + ", salary=" + salary + "]";
+			}
+		
+		/**
+		   Setea un nuevo valor para el salario.
+		   @param s the new salary.
+		*/
+		public void setSalary(double s)
+		{  
+		   salary = s;
+		}
+		
+		private String name;
+		private double salary;
+		}
+</div>
+</pre>
+<br/>
+</div>
+</body>
+</html>

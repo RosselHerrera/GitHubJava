@@ -1,0 +1,123 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<%--
+Author:- Ramakanta(rks2286(at)gmail(dot)com)
+Date Created: Mar 14 2010
+PurPose: Online Java Thread Dump
+Java required: 1.4.x
+--%>
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta http-equiv="CACHE-CONTROL" content="NO-CACHE">
+<title>Thread Lister</title>
+</head>
+<body>
+
+	<table width="100%" border="1" cellspacing="0" cellpadding="3"
+		bordercolor="#000000">
+		<tr>
+			<td bgcolor="#E7E7EF" bordercolor="#000000" align="center" nowrap>
+				<font face="Verdana" size="+1">Thread
+					Lister&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+			</td>
+		</tr>
+
+		<tr>
+			<td bgcolor="#E7E7EF" bordercolor="#000000">
+			<%@ page import="java.io.*"%> <%
+ 	out.print("<hr />");
+ 	out.print("<p align=center>" + "Application Java Thread Dump"
+ 			+ "<br />");
+ 	out.print("Generating Thread-Dump At:"
+ 			+ (new java.util.Date()).toString() + "<br />");
+ 	out.println("</p><hr />" + "<br />");
+
+ 	// Get the top level thread group
+ 	ThreadGroup adam = getAdam(Thread.currentThread().getThreadGroup());
+ 	// Get the count of active threads in the system
+ 	int num = adam.activeCount();
+ 	// Get all of the active threads in the system
+ 	Thread list[] = new Thread[num];
+ 	int x = adam.enumerate(list);
+
+ 	// Display all of the active threads in the system
+ 	for (int i = 0; i < x; i++) {
+ 		if (list[i] == null)
+ 			continue;
+ 		String threadName = list[i].getName();
+ 		String groupName = list[i].getThreadGroup().getName();
+ 		String stack = list[i].getThreadGroup().toString();
+ 		//State s = list[i].getState();
+ 		out.print("group:" + groupName + ", thread:" + threadName
+ 				+ ", priority:" + list[i].getPriority() + ", daemon:"
+ 				+ (list[i].isDaemon() ? "Yes" : "No") + ", alive:"
+ 				+ (list[i].isAlive() ? "Yes" : "No")
+ 				+ ",Is Interrupted:"
+ 				+ (list[i].isInterrupted() ? "Yes" : "No")
+ 				//+",State:"+(list[i].Thread.holdsLock(writer) ? "Yes" : "No")
+ 				+ "<br />" + "ThreadGroup:" + stack + "<br />");
+
+ 		ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+ 		PrintStream writer = new PrintStream(bytes, true);
+ 		System.setOut(writer);
+ 		System.setErr(writer);
+ 		//(new Throwable()).printStackTrace( writer );
+ 		//boolean abc = assert Thread.holdsLock(writer);
+ 		//out.print("ha"+abc);
+ 		//Thread.dumpStack();
+ 		out.print("<br />");
+ 		list[i].dumpStack();
+ 		String str = bytes.toString();
+ 		str = str.replaceAll("\n", "<br/>    ");
+ 		out.print("Stack Dump:" + str
+
+ 		+ "<hr />");
+ 	}
+ 	//Thread.dumpStack();
+ 	//String line = null;
+ 	//try{
+ 	//   while((line = reader.readLine()) != null) out.print(line + "<br/>");
+ 	//}catch(IOException ioe) {System.out.println(ioe.getMessage());}
+
+ 	out.print("<p align=center>Finish<br/>");
+ 	out.print("Application Java Thread Dump<br/>");
+ 	out.print("Completed Thread-Dump At:"
+ 			+ (new java.util.Date()).toString() + "<br/>");
+ 	out.println("</p><hr />" + "<br />");
+ %> <%--!
+BufferedReader reader;
+public void jspInit(){
+// File errFile = new File(getServletContext().getRealPath("/StdErr.txt"));
+try{
+File errFile = File.createTempFile("StrErr",".txt");
+reader = new BufferedReader(new FileReader(errFile));
+PrintStream ps = new PrintStream(errFile);
+System.setErr(ps);
+}catch(IOException ioe) {System.out.println(ioe.getMessage());}
+}
+private ThreadGroup getAdam (ThreadGroup tg)
+{
+ThreadGroup parent = tg.getParent();
+if (parent == null)
+return tg;
+
+return getAdam(parent);
+}
+--%> <%!// Recursively calls itself to find the top level thread group
+	private static ThreadGroup getAdam(ThreadGroup tg) {
+		ThreadGroup parent = tg.getParent();
+		if (parent == null)
+			return tg;
+
+		return getAdam(parent);
+	}%></td>
+		</tr>
+	</table>
+</body>
+</html>
+

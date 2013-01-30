@@ -1,0 +1,63 @@
+package test.transformaciones;
+
+import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class GeneraXSLT_Input {
+
+    public static void main(String[] args)
+    {
+    	String HoraIni       = new SimpleDateFormat("HH:mm:ss").format(new Date());	
+    	
+    	String[] params      = {"PARAM1", "PARAM2", "PARAM3", "PARAM4", "PARAM5"};
+    	String[] parampesos  = {"$PARAM1", "$PARAM2", "$PARAM3", "$PARAM4", "$PARAM5"};
+    	String[] paramNombre = {"EtiquetaNombre1", "EtiquetaNombre2", "EtiquetaNombre3", "EtiquetaNombre4", "EtiquetaNombre5"};
+    	
+        FileWriter fichero = null;
+        PrintWriter pw = null;
+        try
+        {
+            fichero = new FileWriter("c:/Users/Lozoronca/Documents/ws_CDBKX022_input.xsl");
+            pw = new PrintWriter(fichero);
+
+            for (int i = 0; i < 1; i++){	
+            	/* Cabecera ws_<name>_input   */
+                pw.println("<?xml version=" + "\"" + "1.0" + "\"" + " encoding=" + "\"" + "ISO-8859-1" + "\"" + "?>"  + "\n" +
+                		   "<xsl:stylesheet xmlns:xsl=" + "\"" + "http://www.w3.org/1999/XSL/Transform" + "\"" + " version=" + "\"" + "1.0" + "\"" + ">");
+                pw.println("\t<xsl:output method=" + "\"" + "xml"  + "\"" + "/>");
+                for (int k = 0; k < params.length; k++){
+                pw.println("\t<xsl:param name=" + "\"" + params[k] + "\"" + "/>");
+                }		
+                pw.println("\n\t<xsl:template match=" + "\"" + "/" +  "\"" + ">");
+        		pw.println("\t\t<Mvld_HS_CDBKX022_Request>");
+        		pw.println("\t\t<SERVICIO_ORIG>");
+        		for (int j = 0; j < paramNombre.length; j++){
+        			pw.println("\t\t\t<" + paramNombre[j] + "> <xsl:value-of select=" +  "\"" +  parampesos[j] +  "\"" + "/> </" + paramNombre[j] + ">");
+        		}
+        		pw.println("\t\t\t<MSGID></MSGID>");
+        		pw.println("\t\t</SERVICIO_ORIG>");
+        		pw.println("\t\t</Mvld_HS_CDBKX022_Request>");
+				pw.println("\t</xsl:template>");
+            	/* Cierre */
+            	pw.println("</xsl:stylesheet>");
+            }   
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+           try {
+           // Nuevamente aprovechamos el finally para 
+           // asegurarnos que se cierra el fichero.
+           String HoraFin  = new SimpleDateFormat("HH:mm:ss").format(new Date());
+           System.out.println("Tiempo Proceso : Inicio " + HoraIni + " : Fin " + HoraFin );
+           
+           if (null != fichero)
+              fichero.close();
+           } catch (Exception e2) {
+              e2.printStackTrace();
+           }
+        }
+    }
+}
+

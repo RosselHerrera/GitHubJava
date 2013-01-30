@@ -1,0 +1,171 @@
+package test.transformaciones;
+
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class GeneraWSDL {
+	
+	public static void main(String[] args)
+    {
+    	String HoraIni       = new SimpleDateFormat("HH:mm:ss").format(new Date());	
+    	
+    	String name =  "Mvld_HS_CDBKX022";
+    	String tns  =  "http://com.isban.eai.hub.mn/" + name;
+    	
+    	String urlCC = "Mvld_HS_CDBKX022/";
+    	
+    	String[] params      		= {"PARAM1", "PARAM2", "PARAM3", "PARAM4", "PARAM5", "PARAM6", "PARAM7", "PARAM8", "PARAM9", "PARAM10" };
+    	String[] parampesos  		= {"$PARAM1", "$PARAM2", "$PARAM3", "$PARAM4", "$PARAM5", "$PARAM6", "$PARAM7", "$PARAM8", "$PARAM9", "$PARAM10"};
+    	String[] paramNombre 		= {"EtiquetaNombre1", "EtiquetaNombre2", "EtiquetaNombre3", "EtiquetaNombre4", "EtiquetaNombre5", "EtiquetaNombre6", "EtiquetaNombre7", "EtiquetaNombre8", "EtiquetaNombre9", "EtiquetaNombre10" };
+    	String[] paramErr    		= {"CODERR", "DESERR", "MSGUSUARIO"};
+    	String[] escalares   		= {"//ESCALARES/1", "//ESCALARES/2", "//ESCALARES/3", "//ESCALARES/4", "//ESCALARES/5", "//ESCALARES/6", "//ESCALARES/7", "//ESCALARES/8", "//ESCALARES/9", "//ESCALARES/10"};
+    	String[] MatrizCDBKX022Type = {"NUMEROCONTRATO", "PRODUCTO", "SUBPRODUCTO", "MONTODISPONIBLE", "MONTOUTILIZADO", "GLOSACORTA", "OFICINACONTRATO","CUPO", "GLOSAESTADO", "NUMEROPAN", "ESTADOOPERACION", "ESTADORELACION", "CODIGOMONEDA", "AGRUPACIONCOMERCIAL"};
+    	String[] Documentos  		= {"NumeroContrato", "Producto", "Subproducto", "MontoDisponible", "MontoUtilizado", "GlosaCorta", "OficinaContrato","Cupo", "GlosaEstado", "NumeroPAN", "EstadoOperacion", "EstadoRelacion", "CodigoMoneda", "AgrupacionComercial"};
+
+    	
+    	
+        FileWriter fichero = null;
+        PrintWriter pw = null;
+        try
+        {
+            fichero = new FileWriter("c:/Users/Lozoronca/Documents/WSDL_CDBKX022.wsdl");
+            pw = new PrintWriter(fichero);
+
+            for (int i = 0; i < 1; i++){	
+            	/* Cabecera wsdl_<name>_input   */
+                pw.println("<?xml version=" + "\"" + "1.0" + "\"" + " encoding=" + "\"" + "UTF-8" + "\"" + "standalone=" + "\"" + "no" + "\"" + "?>");
+                pw.println("<wsdl:definitions "); 
+                pw.println("\t xmlns:soap=" + "\"" + "http://schemas.xmlsoap.org/wsdl/soap/" + "\"");
+                pw.println("\t xmlns:tns=" + "\"" + tns + "\""); 
+                pw.println("\t xmlns:wsdl=" + "\"" + "http://schemas.xmlsoap.org/wsdl/" + "\"");
+                pw.println("\t xmlns:xsd=" + "\"" + "http://www.w3.org/2001/XMLSchema" + "\""); 
+                pw.println("\t name=" + "\"" + name + "\"");
+                pw.println("\t targetNamespace=" + "\"" + tns +  "\"" + "/>\n");
+                
+                /*  wsdl:types   */
+                pw.println("\t<wsdl:types>");
+                pw.println("\t\t<xsd:schema targetNamespace=" + "\"" + tns + ">");
+                pw.println("\t\t<xsd:element name=" + urlCC + ">");			   
+        		pw.println("\t\t\t<xsd:complexType>");
+        		pw.println("\t\t\t<xsd:sequence>");
+        		pw.println("\t\t\t\t<xsd:element name=" + "\"" + "INPUT" + "\"" + "type=" + "\"" + "tns:INPUTType" + "\"" + "></xsd:element>");
+        		pw.println("\t\t\t</xsd:sequence>");
+        		pw.println("\t\t</xsd:complexType>");
+        		pw.println("\t</xsd:element>");
+        		 
+        		pw.println("\t<xsd:complexType name=" + "\"" + "INPUTType" + "\"" + ">");
+        		pw.println("\t\t<xsd:sequence>");
+        		for (int j = 0; j < params.length; j++){
+        			pw.println("\t\t\t<xsd:element name=" + "\"" + params[j] + "\"" + " 		nillable=" + "\"" + "true" + "\"" + "type=" + "\"" + "xsd:string" + "\"" + "/>");
+        		}
+        		pw.println("\t\t</xsd:sequence>");
+        		pw.println("\t\t</xsd:complexType>");	
+        		pw.println("\t\t\t<xsd:element name=" + "\"" + "Mvld_HS_CDBKX022_Response" + "\"" + ">");
+        		pw.println("\t\t<xsd:complexType>");
+        		pw.println("\t\t\t<xsd:sequence>");
+        		pw.println("\t\t\t\t<xsd:element name=" + "\"" + "OUTPUT" + "\"" + "type=" + "\"" + "tns:OUTPUTType" + "\"" + "></xsd:element>");
+        		pw.println("\t\t\t</xsd:sequence>");
+        		pw.println("\t\t</xsd:complexType>");
+        		pw.println("\t</xsd:element>");	
+        		pw.println("\t<xsd:complexType name=" + "\"" + "OUTPUTType" + "\"" + ">");
+        		pw.println("\t\t<xsd:sequence>");
+        		pw.println("\t\t\t<xsd:element name=" + "\"" + "INFO" + "\"" + " type=" + "\"" + "tns:INFOType" + "\"" + "></xsd:element>");
+        		pw.println("\t\t\t<xsd:element name=" + "\"" + "RELLAMADA" + "\"" + " type=" + "\"" + "tns:RELLAMADAType" + "\"" + "></xsd:element>");
+        		pw.println("\t\t\t<xsd:element name=" + "\"" + "ESCALARES" + "\"" + " type=" + "\"" + "tns:ESCALARESType" + "\"" + "></xsd:element>");
+        		pw.println("\t\t\t<xsd:element name=" + "\"" + "MATRICES" + "\"" + " type=" + "\"" + "tns:MatrizCCCKC206Type" + "\"" + " minOccurs=" + "\"" + "0" + "\"" + " maxOccurs=" + "\"" + "unbounded" + "\"" + "></xsd:element>");
+        		pw.println("\t\t</xsd:sequence>");					
+        		pw.println("\t</xsd:complexType>");
+        		pw.println("\t<xsd:complexType name=" + "\"" + "INFOType" + "\"" + ">");
+        		pw.println("\t\t<xsd:sequence>");
+        		for (int k = 0; k < paramErr.length; k++){
+        			pw.println("\t\t\t<xsd:element" + "\"" + "name=" + "\"" + "CODERR" + "\"" + "  nillable="  + "\"" + "true" + "\"" + " type=" + "\"" + "xsd:string"  + "\"" + "/>");  
+        		}										
+        		pw.println("\t\t</xsd:sequence>");
+        		pw.println("\t</xsd:complexType>");
+        		pw.println("\t<xsd:complexType name=" + "\"" + "RELLAMADAType" + "\"" + ">");
+        		pw.println("\t\t<xsd:sequence>");
+        		pw.println("\t\t\t<xsd:element name=" + "\"" + "ID-RECALL" + "\"" + " nillable=" + "\"" + "true" + "\"" + " type=" + "\"" + "xsd:string" + "\"" + "/>");   									
+        		pw.println("\t\t</xsd:sequence>");
+        		pw.println("\t</xsd:complexType>");
+        		pw.println("\t<xsd:complexType name=" + "\"" + "ESCALARESType" + "\"" + ">");
+        		pw.println("\t<xsd:sequence>");
+        		for (int l = 0; l < escalares.length; l++){
+        			pw.println("\t\t<xsd:element name="  + "\"" +  escalares[l]  + "\"" +  "   nillable=" + "\"" + "true" + "\"" + " type=" + "\"" + "xsd:string" + "\"" + " />");   					
+        		}        			
+        		pw.println("\t</xsd:sequence>");
+        		pw.println("\t</xsd:complexType>");
+        		pw.println("\t<xsd:complexType name=" + "\"" + "MatrizCDBKX022Type" + "\"" + ">");
+        		pw.println("\t<xsd:sequence>");  
+        		pw.println("\t\t<xsd:element name=" + "\"" + "MATRIZDOCUMENTOS" + "\"" + " type=" + "\"" + "tns:e1Type" + "\"" + "  minOccurs=" + "\"" + "0" + "\"" + " maxOccurs=" + "\"" + "unbounded" + "\"" + "></xsd:element>");
+        		pw.println("\t</xsd:sequence>");
+        		pw.println("\t</xsd:complexType>");
+        		pw.println("\t<xsd:complexType name=" + "\"" + "e1Type" + "\"" + ">");
+        		pw.println("\t\t<xsd:sequence>");  
+        		pw.println("\t\t\t<xsd:element name=" + "\"" + "e1" + "\"" + " type=" + "\"" + "tns:DocumentosType" + "\"" + " minOccurs=" + "\"" + "0" + "\"" + " maxOccurs=" + "\"" + "unbounded" + "\"" + "></xsd:element>");
+        		pw.println("\t\t</xsd:sequence>");
+        		pw.println("\t</xsd:complexType>");
+        		pw.println("\t<xsd:complexType name=" + "\"" + "DocumentosType" + "\"" + ">");
+        		pw.println("\t<xsd:sequence>");
+        		for (int m = 0; m < MatrizCDBKX022Type.length; m++){
+        			pw.println("\t\t<xsd:element name=" + "\"" + MatrizCDBKX022Type[m] + "\"" + " nillable=" + "\"" + "true" + "\"" + " type=" + "\"" + "xsd:string" + "\"" + " />");   					
+        		}  
+				pw.println("\t</xsd:sequence>");
+				pw.println("\t</xsd:complexType>");
+				pw.println("</xsd:schema>");
+				pw.println("</wsdl:types>");
+
+				pw.println("\t<wsdl:message name=" + "\"" + "Mvld_HS_CDBKX022_Request" + "\"" + ">");
+				pw.println("\t\t<wsdl:part element=" + "\"" + "tns:Mvld_HS_CDBKX022_Request" + "\"" + " name=" + "\"" + "parameters" + "/>");
+				pw.println("\t</wsdl:message>");
+				
+				pw.println("\t<wsdl:message name=" + "\"" + "Mvld_HS_CDBKX022_Response" + "\"" + ">");
+				pw.println("\t\t<wsdl:part element=" + "\"" + "tns:Mvld_HS_CDBKX022_Response" + "\"" + " name=" + "\"" + "parameters" + "\"" + " />");
+				pw.println("\t</wsdl:message>");
+				
+				pw.println("\t<wsdl:portType name=" + "\"" + "Mvld_HS_CDBKX022" + "\"" + ">");
+				pw.println("\t\t<wsdl:operation name=" + "\"" + "Mvld_HS_CDBKX022" + "\"" + ">");
+				pw.println("\t\t<wsdl:input  message=" + "\"" + "tns:Mvld_HS_CDBKX022_Request" + "\"" + " />");
+				pw.println("\t\t<wsdl:output message=" + "\"" + "tns:Mvld_HS_CDBKX022_Response" + "\"" + " />");
+				pw.println("\t</wsdl:operation>");
+				pw.println("\t</wsdl:portType>");
+				
+				pw.println("\t<wsdl:binding name=" + "\"" + "Mvld_HS_CDBKX022SOAP" + "\"" + " type=" + "\"" + "tns:Mvld_HS_CDBKX022" + "\"" + ">");
+				pw.println("\t\t<soap:binding style=" + "\"" + "document" + "\"" + " transport=" + "\"" + "http://schemas.xmlsoap.org/soap/http" + "\"" + " />");
+				pw.println("\t\t<wsdl:operation name=" + "\"" + "Mvld_HS_CDBKX022" + "\"" + ">");
+				pw.println("\t\t\t<soap:operation soapAction=" + "\"" + "http://com.isban.eai.hub.mn/Mvld_HS_CCCKC206/Mvld_HS_CDBKX022" + "\"" + " />");
+				pw.println("\t\t\t<wsdl:input> <soap:body use=" + "\"" + "literal" + "\"" + " /></wsdl:input>");
+				pw.println("\t\t\t<wsdl:output><soap:body use=" + "\"" + "literal" + "\"" + " /></wsdl:output>");
+				pw.println("\t\t</wsdl:operation>");
+				pw.println("\t</wsdl:binding>");
+				
+				pw.println("\t<wsdl:service name=" + "\"" + "Mvld_HS_CDBKX022" + "\"" + ">");
+				pw.println("\t\t<wsdl:port binding=" + "\"" + "tns:Mvld_HS_CDBKX022SOAP" + "\"" + " name=" + "\"" + "Mvld_HS_CDBKX022SOAP" + "\"" + ">");
+				pw.println("\t\t\t<soap:address location=" + "\"" + "http://localhost:8280/synapse/soap/ws_CDBKX022" + "\"" + " />");
+				pw.println("\t\t</wsdl:port>");
+				pw.println("\t</wsdl:service>....TERMINAMOS");
+        	
+            	/* Cierre Tag /wsdl> */
+                
+            	pw.println("</wsdl:definitions>");
+            }   
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+           try {
+           // Nuevamente aprovechamos el finally para 
+           // asegurarnos que se cierra el fichero.
+           String HoraFin  = new SimpleDateFormat("HH:mm:ss").format(new Date());
+           System.out.println("Tiempo Proceso : Inicio " + HoraIni + " : Fin " + HoraFin );
+           
+           if (null != fichero)
+              fichero.close();
+           } catch (Exception e2) {
+              e2.printStackTrace();
+           }
+        }
+    }
+
+}

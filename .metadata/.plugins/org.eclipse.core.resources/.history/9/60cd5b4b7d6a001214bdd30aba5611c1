@@ -1,0 +1,60 @@
+package test.transformaciones;
+
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class GeneraProxiServices {
+	
+	 public static void main(String[] args)
+	    {
+	    	String HoraIni       = new SimpleDateFormat("HH:mm:ss").format(new Date());	
+	    	String nomcomp       = "ws_CDBKX022";
+	    	String titulo        = "Consulta Movimientos Acciones Compra";
+	    	String seqReq        = "ProcesoReqMvldCDBKX022.xml";
+	    	String seqRsp        = "ProcesoRspMvldCDBKX022.xml";
+	    	String wsdl          = "ws_mvldCDBKX022.wsdl";
+	    	String ruta			 = "sequences/medMvldad/CompraVentaAcciones/Venta/";	
+	    	
+	    	
+	        FileWriter fichero = null;
+	        PrintWriter pw = null;
+	        
+	        try
+	        {
+	            fichero = new FileWriter("c:/Users/Lozoronca/Documents/" + nomcomp + ".xml");
+	            pw = new PrintWriter(fichero);
+
+	            for (int i = 0; i < 1; i++){	
+	            	/* Cabecera ws_<name>_input   */
+	            	pw.println("<proxy name=" + "\"" + nomcomp + "\"" + " transports=" + "\"" + "http" + "\"" + " trace="  + "\"" + "enable" + "\"" +  " xmlns="  + "\"" + "http://ws.apache.org/ns/synapse"  + "\"" + ">");
+	            	pw.println("\t<log level=" + "\"" + "full" + "\"" + "/>"); 
+	            	pw.println("\t<description>" + titulo + "</description>");          
+	            	pw.println("\t<target faultSequence=" + "\"" + "fault" + "\"");	      		 	 
+	            	pw.println("\t\t\t inSequence =" + "\"" + ruta + seqReq + "\"");
+	            	pw.println("\t\t\t outSequence=" + "\"" + ruta + seqRsp + "\"" + "/>");
+	        				
+	            	pw.println("\t\t<publishWSDL key=" + "\"" + "sequences/wsdl/" + wsdl + "\"" + "/>");
+	            	pw.println("</proxy>");
+	            	
+	            }   
+
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        } finally {
+	           try {
+	           // Nuevamente aprovechamos el finally para 
+	           // asegurarnos que se cierra el fichero.
+	           String HoraFin  = new SimpleDateFormat("HH:mm:ss").format(new Date());
+	           System.out.println("Tiempo Proceso : Inicio " + HoraIni + " : Fin " + HoraFin );
+	           
+	           if (null != fichero)
+	              fichero.close();
+	           } catch (Exception e2) {
+	              e2.printStackTrace();
+	           }
+	        }
+	    }
+
+}

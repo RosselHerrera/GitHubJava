@@ -1,0 +1,78 @@
+package test.transformaciones;
+
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class GeneraProcesoRspMvld {
+	
+	public static void main(String[] args)
+    {
+		/* DATA x Template  ------------------------------------------------------ */
+		
+    	String HoraIni       = new SimpleDateFormat("HH:mm:ss").format(new Date());	
+    	String nomcomp       = "ProcesoXMLCDBKX022";
+    	String titulo        = "Consulta Movimientos Acciones Venta";
+    	String seqReq        = "ProcesoReqMvldCDBKX022.xml";
+    	String seqRsp        = "ProcesoRspMvldCDBKX022.xml";
+    	String wsdl          = "ws_mvldCDBKX022.wsdl";
+    	String ruta			 = "sequences/medMvldad/CompraVentaAcciones/Venta/";
+    	
+    	String rutaxsl		 = "xslt/CompraVentaAcciones/Venta/";
+    	String ws_xslt       = "ws_CDBKX022_Output.xsl";
+    	String[] params      = {"PARAM1", "PARAM2", "PARAM3", "PARAM4", "PARAM5", "PARAM6", "PARAM7", "PARAM8", "PARAM9", "PARAM10" };
+    	/* ----------------------------------------------------------------------- */
+    	
+        FileWriter fichero = null;
+        PrintWriter pw = null;
+        
+        try
+        {
+            fichero = new FileWriter("c:/Users/Lozoronca/Documents/" + nomcomp + ".xml");
+            pw = new PrintWriter(fichero);
+
+            /*for (int i = 0; i < 1; i++){	
+            	 Cabecera ws_<name>_input   
+            	pw.println("<sequence name=" + "\"" + nomcomp + "\"" + " xmlns=" + "\"" + "http://ws.apache.org/ns/synapse" + "\"" + ">");
+            	pw.println("\t<log level=" + "\"" + "full" + "\"" + "/>"); 
+            	pw.println("\t\t<property name=" + "\"" + "XML" + "\"" + " value=" + "\"" + "# WS CONSULTA CDBKX022 :: 2. SOAP MESSAGE AFTER SERVICE INVOKE  #" + "\"" + "/>");
+            	pw.println("\t</log>");
+            	
+            	pw.println("\t<log level=" + "\"" + "custom" + "\"" + "/>"); 
+            	pw.println("\t\t<property name=" + "\"" + "SYN_TEST_UNIT_SRV" + "\"" + " value=" + "\"" + "# WS CONSULTA CDBKX022 :: 2. SOAP MESSAGE AFTER SERVICE INVOKE  #" + "\"" + "/>");
+            	pw.println("\t</log>");
+            	
+            	pw.println("\t</send>");
+            	pw.println("</sequence>");
+            }  */ 
+            
+            pw.println("<?xml version=" + "\"" + "1.0" + "\"" + " encoding=" + "\"" + "UTF-8" + "\"" + "?>");
+            for (int i = 0; i < params.length; i++ ){
+            pw.println("\t<xsd:sequence>");
+            pw.println("\t\t<xsd:element name=" + "\"" + "NROCUENTA" + "\"" + " nillable=" + "\"" + "true" + "\"" + " type=" + "\"" + "xsd:string" + "\"" + "/>");
+            pw.println("\t\t\t<xsd:element name=" + "\"" + params[i] + "\"" + " nillable=" + "\"" + "true" + "\"" + " type=" + "\"" + "xsd:string" + "\"" + "/>");
+            pw.println("\t\t<xsd:element name=" + "\"" + "NROMOVIMIENTO" + "\"" + " nillable=" + "\"" + "true" + "\"" + " type=" + "\"" + "xsd:string" + "\"" + "/>");
+            pw.println("\t</xsd:sequence>");
+            }
+            pw.println("</xsd:complexType>");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+           try {
+           // Nuevamente aprovechamos el finally para 
+           // asegurarnos que se cierra el fichero.
+           String HoraFin  = new SimpleDateFormat("HH:mm:ss").format(new Date());
+           System.out.println("Tiempo Proceso : Inicio " + HoraIni + " : Fin " + HoraFin );
+           
+           if (null != fichero)
+              fichero.close();
+           } catch (Exception e2) {
+              e2.printStackTrace();
+           }
+        }
+    }
+
+
+}

@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import persistencia.DBHSQL;
-import test.Conector;
 import dto.DTOBackLog;
 
 public class MBackLogSelect  {
@@ -65,7 +64,7 @@ public class MBackLogSelect  {
            /* try{ stmt.executeQuery("DROP TABLE AGILHSQL26"); }
             catch(java.sql.SQLException e){}*/
             //Creamos una tabla < nombreTabla >
-           /*stmt.executeQuery("CREATE TABLE VISTASMED (ID BIGINT PRIMARY KEY, "+
+           /* stmt.executeQuery("CREATE TABLE VISTASMED (ID BIGINT PRIMARY KEY, "+
                                                 "ACTIVIDAD VARCHAR(255), " +
             		                            "DET1 VARCHAR(255), " +
                                                 "DET2 VARCHAR(255), "+

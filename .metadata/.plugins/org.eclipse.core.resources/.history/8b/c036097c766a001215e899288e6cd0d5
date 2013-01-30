@@ -1,0 +1,93 @@
+package test.transformaciones;
+
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class GeneraXSLT_output {
+	
+	public static void main(String[] args)
+    {
+    	String HoraIni       = new SimpleDateFormat("HH:mm:ss").format(new Date());	
+    	
+    	String[] etiqueta           = {"//ESCALARES/CodErr", "//ESCALARES/DesErr", "//ESCALARES/DesErr"};
+    	String[] paramEtiqueta      = {"CODERR", "DESERR", "MSGUSUARIO"};
+    	
+    	String[] Etiquetaescalares  = {"ETIQUETA1", "ETIQUETA2", "ETIQUETA3", "ETIQUETA4", "ETIQUETA5", "ETIQUETA6", "ETIQUETA7", "ETIQUETA8", "ETIQUETA9", "ETIQUETA10"};
+    	String[] escalares          = {"//ESCALARES/1", "//ESCALARES/2", "//ESCALARES/3", "//ESCALARES/4", "//ESCALARES/5", "//ESCALARES/6", "//ESCALARES/7", "//ESCALARES/8", "//ESCALARES/9", "//ESCALARES/10"};
+    	
+    	String[] Matrices           = {"NUMEROCONTRATO", "PRODUCTO", "SUBPRODUCTO", "MONTODISPONIBLE", "MONTOUTILIZADO", "GLOSACORTA", "OFICINACONTRATO","CUPO", "GLOSAESTADO", "NUMEROPAN", "ESTADOOPERACION", "ESTADORELACION", "CODIGOMONEDA", "AGRUPACIONCOMERCIAL"};
+    	String[] Documentos         = {"NumeroContrato", "Producto", "Subproducto", "MontoDisponible", "MontoUtilizado", "GlosaCorta", "OficinaContrato","Cupo", "GlosaEstado", "NumeroPAN", "EstadoOperacion", "EstadoRelacion", "CodigoMoneda", "AgrupacionComercial"};
+    	
+    	/*String[] MActivos           = {"NUMEROCONTRATO", "PRODUCTO", "SUBPRODUCTO", "MONTOCUOTA", "MONEDACUOTA", "DEUDAACTUALIZADA", "MONTOPAGO", "GLOSACORTA", "OFICINA", "GLOSAESTADO", "ESTADOOPERACION", "ESTADORELACION", "CODIGOMONEDA", "AGRUPACIONCOMERCIAL"};
+    	String[] CActivos			= {"NumeroContrato", "Producto", "Subproducto", "MontoCuota", "MonedaCuota", "DeudaActualizada", "MontoPago", "GlosaCorta", "Oficina", "GlosaEstado", "EstadoOperacion", "EstadoRelacion", "CodigoMoneda", "AgrupacionComercial"};
+    	String[] MPasivos           = {"NUMEROCONTRATO", "PRODUCTO", "SUBPRODUCTO", "MONTOINVERSION", "VALORCOBRO", "DEPOSITOS", "GLOSACORTA", "OFICINA", "GLOSAESTADO", "ESTADOOPERACION", "ESTADORELACION", "CODIGOMONEDA", "AGRUPACIONCOMERCIAL"};
+    	String[] CPasivos           = {"NumeroContrato", "Producto", "Subproducto", "MontoInversion", "ValorCobro", "Depositos", "GlosaCorta", "Oficina", "GlosaEstado", "EstadoOperacion", "EstadoRelacion", "CodigoMoneda", "AgrupacionComercial"};*/
+    	
+    	
+        FileWriter fichero = null;
+        PrintWriter pw = null;
+        
+        try
+        {
+            fichero = new FileWriter("c:/Users/Lozoronca/Documents/ws_CDBKX022_output.xsl");
+            pw = new PrintWriter(fichero);
+
+            for (int i = 0; i < 1; i++){	
+            	/* Cabecera ws_<name>_input   */
+                pw.println("<?xml version=" + "\"" + "1.0" + "\"" + " encoding=" + "\"" + "ISO-8859-1" + "\"" + "?>"  + "\n" +
+                		   " <xsl:stylesheet xmlns:xsl=" + "\"" + "http://www.w3.org/1999/XSL/Transform" + "\"" + "\n\t\t  xmlns:ws=" +  "\"" + "http://com.isban.eai.hub.mn/Mvld_HS_CDBKX022/" + "\"" + "\n\t\t version=" + "\"" + "1.0" + "\"" + ">");
+                pw.println("\t<xsl:output method=" + "\"" + "xml"  + "\"" + "/>");
+                pw.println("\t<xsl:template match=" + "\"" + "/"  + "\"" + "/>");
+                pw.println("\t\t\t<OUTPUT>");
+                pw.println("\t\t\t\t<INFO>");
+                /* Parametros ws_<name>_input   */
+                for (int j = 0; j<etiqueta.length; j++){	
+            		pw.println("\t\t\t\t\t<" + paramEtiqueta[j] +  "><xsl:value-of select=" + "\"" + etiqueta[j] +  "\"" + "/></" + paramEtiqueta[j] +  ">");
+            	}
+                pw.println("\t\t\t\t</INFO>");
+                pw.println("\t\t\t\t<RELLAMADA>");
+                pw.println("\t\t\t\t\t<ID-RECALL><xsl:value-of select=" + "\"" + "//RELLAMADA/ID-RECALL" + "\"" + "/></ID-RECALL>");
+                pw.println("\t\t\t\t</RELLAMADA>");
+                pw.println("\t\t\t\t<ESCALARES>");
+                for (int k = 0; k <escalares.length; k++){
+                	pw.println("\t\t\t\t\t\t<" + Etiquetaescalares[k] + "><xsl:value-of select=" + "\"" +  escalares[k] +  "\"" + "/></" + Etiquetaescalares[k] + ">");	
+            	}
+                pw.println("\t\t\t\t</ESCALARES>");
+                pw.println("\t\t\t\t<MATRICES>");
+                pw.println("\t\t\t\t\t<MATRIZDOCUMENTOS>");
+                pw.println("\t\t\t\t\t\t<xsl:for-each select="+ "\"" + "//MATRIZ/e" +  "\"" + ">");
+                pw.println("\t\t\t\t\t\t\t<e1>");
+                for (int m = 0; m <Matrices.length; m++){
+                	pw.println("\t\t\t\t\t\t\t\t\t<" + Matrices[m] + "><xsl:for-each select=" + "\"" +  Documentos[m] +  "\"" + "/></" + Documentos[m] + ">");	
+                }
+                pw.println("\t\t\t\t\t\t\t</e1>");
+                pw.println("\t\t\t\t\t\t</xsl:for-each>");
+                pw.println("\t\t\t\t\t</MATRIZDOCUMENTOS>");
+                pw.println("\t\t\t\t</MATRICES>");
+                pw.println("\t\t\t</OUTPUT>");		
+                pw.println("\t</xsl:template>");
+                
+            	/* Cierre  */
+            	pw.println("</xsl:stylesheet>");
+            }   
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+           try {
+           // Nuevamente aprovechamos el finally para 
+           // asegurarnos que se cierra el fichero.
+           String HoraFin  = new SimpleDateFormat("HH:mm:ss").format(new Date());
+           System.out.println("Tiempo Proceso : Inicio " + HoraIni + " : Fin " + HoraFin );
+           
+           if (null != fichero)
+              fichero.close();
+           } catch (Exception e2) {
+              e2.printStackTrace();
+           }
+        }
+    }
+
+}

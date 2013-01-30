@@ -1,0 +1,49 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page import="java.io.*, java.util.*, java.text.*"%>
+
+<%@ page import = "mantenedores.MBackLogSelect" %>
+<%@ page import = "dto.DTOBackLog" %>
+
+<%
+	String Fecha = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+    String Hora  = new SimpleDateFormat("HH:mm:ss").format(new Date());
+%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Muestra BackLog</title>
+</head>
+<body>
+<%
+	/* -------------------------------  */
+	MBackLogSelect backlog   = new MBackLogSelect();
+	ArrayList backlogs = backlog.ListaBackLogs();
+	/* -------------------------------  */
+	Iterator itBL = backlogs.iterator();
+%>
+	<table border=0 cellspacing=0 cellpadding=0 style="width: 1020px; height: 90px">
+	<%
+	while (itBL.hasNext()){
+		DTOBackLog obBL = (DTOBackLog) itBL.next();%>
+		<tr bgcolor=#F3E2A9>
+			<td align=center>
+				<%=obBL.getActividad() %> 
+			</td>
+			<td align=center>
+				<%=obBL.getDetalle1()%>
+			</td>
+			<td align=center>
+				<%=obBL.getDetalle2()%>
+			</td>
+			<td align=center>
+				<%=obBL.getDetalle3()%>
+			</td>
+			<td align=center>
+				<%=obBL.getFecha()%>
+			</td>
+		</tr>
+	<%}%>
+</body>
+</html>

@@ -1,0 +1,13 @@
+INDEX VERSION 1.126+C:\AAA\2013\ENE\java\GitHub\GitHubJava\.metadata\.plugins\org.eclipse.jdt.core
+4164161556.index
+1798248874.index
+1481644545.index
+1181512377.index
+3875023737.index
+1905355213.index
+978120142.index
+155474919.index
+3763830880.index
+1562357712.index
+159937399.index
+831902115.index

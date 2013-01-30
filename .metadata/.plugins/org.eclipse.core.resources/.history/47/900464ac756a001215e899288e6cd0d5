@@ -1,0 +1,184 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link type=text/css rel=stylesheet media=all href=../css/kanban.css>
+<script type="text/javascript" src="../js/kanban.js"></script>
+<title>Emplemático</title>
+</head>
+<body bgcolor=#000f0f onload="OnLoad()">
+
+<div align=center>
+	
+	<table width=1024 align=center border=0 cellspacing=1 celpadding=1>
+		<tr>
+			<td align=left>
+				<img src="../images/BrandingKanbanL.png"> 
+			</td>
+		</tr>
+		<tr>
+			<td align=center>
+				<img src="../images/LineaTiempo.png">
+			</td>
+		</tr>
+	</table>
+	
+	<table width=1024  height=480 border=0 cellspacing=1 celpadding=1>
+		<!-- <tr bgcolor=#fffcfc>
+			<td colspan=3  height=40  align=center>
+				<font face=Tahoma size=3 color=#000000><b>DESAFIO KANBAN</b></font>	
+			</td>
+		</tr>
+		<tr bgcolor=#fffcfc>
+			<td colspan=3 height=20 align=center>
+				<font face=Tahoma size=2 color=#A4A4A4><b>LINEA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;de&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TIEMPO</b></font>	
+			</td>
+		</tr> -->
+		<tr height=30 align=center bgcolor=#fffcfc>
+			<td width=424 height=20 align=center bgcolor=#fcf0ad>
+				<font face=Tahoma size=2 color=#000000><b>POR HACER</b></font>
+			</td>
+			<td width=300 align=center bgcolor=#ffdd2a>
+				<font face=Tahoma size=2 color=#000000><b>HACIENDO</b></font>
+			</td>
+			<td width=300 align=center bgcolor=#f9a55b>
+				<font face=Tahoma size=2 color=#000000><b>HECHO</b></font>
+			</td>
+		</tr>
+		<tr>
+			<td width=424 align=center bgcolor=#fffcfc>
+				<!-- <div id=1 class="Dragable" selectable="no" style="background-color:#E9E74A;">
+					<font face=Tahoma size=1 color=#00000f>Pensamiento Visual:#E9E74A <b>OPEN Estamos de Acuerdo</b></font>
+				</div>
+				<div id=2 class="Dragable" selectable="no" style="background-color:#EE5E9F;">
+					<font face=Tahoma size=1 color=#00000f>Pensamiento Visual:#EE5E9F <b>EXPLORE Idea comun</b></font>
+				</div>
+				<div id=3 class="Dragable" selectable="no" style="background-color:#FFDD2A;">
+					<font face=Tahoma size=1 color=#00000f>Pensamiento Visual:#FFDD2A <b>CLOSE Acordamos</b></font>
+				</div>
+				<div id=4 class="Dragable" selectable="no" style="background-color:#F59DB9;">
+					<font face=Tahoma size=1 color=#00000f>Pensamiento Visual:#F59DB9 <b>Gestion Visual</b></font>
+				</div>
+				<div id=5 class="Dragable" selectable="no" style="background-color:#F9A55B;">
+					<font face=Tahoma size=1 color=#00000f>Pensamiento Visual:#F9A55B <b>GameStorming</b></font>
+				</div>
+				
+				<div id=6 class="Dragable" selectable="no" style="background-color:#D0E17D;">
+					<font face=Tahoma size=1 color=#00000f>Difundir Cultura Agil:#D0E17D <b>Lean Thinking</b></font> 
+				</div>
+				<div id=7 class="Dragable" selectable="no" style="background-color:#36A9CE;">
+					<font face=Tahoma size=1 color=#00000f>Difundir Cultura Agil:#36A9CE <b>Desafio Kanban</b></font>
+				</div>
+				<div id=8 class="Dragable" selectable="no" style="background-color:#EF5AA1;">
+					<font face=Tahoma size=1 color=#00000f>Difundir Cultura Agil:#EF5AA1 <b>CraftMan</b></font> 
+				</div>
+				<div id=9 class="Dragable" selectable="no" style="background-color:#AE86BC;">
+					<font face=Tahoma size=1 color=#00000f>Difundir Cultura Agil:#AE86BC <b>fail-fast</b></font>
+				</div>
+				<div id=10 class="Dragable" selectable="no" style="background-color:#FFDF25;">
+					<font face=Tahoma size=1 color=#00000f>Difundir Cultura Agil:#FFDF25 <b>Evangelizar</b></font>
+				</div> -->
+				
+				<!-- <div id=11 class="Dragable" selectable="no" style="background-color:#56C4E8;">
+					<font face=Tahoma size=1 color=#00000f>TROPICAL 11:#56C4E8 <b>Cuantificar</b></font>
+				</div>
+				<div id=12 class="Dragable" selectable="no" style="background-color:#D0E068;">
+					<font face=Tahoma size=1 color=#00000f>TROPICAL 12:#D0E068 <b>Asignar</b></font>
+				</div>
+				<div id=13 class="Dragable" selectable="no" style="background-color:#CD9EC0;">
+					<font face=Tahoma size=1 color=#00000f>TROPICAL 13:#CD9EC0 <b>Visualizar</b></font>
+				</div>
+				<div id=14 class="Dragable" selectable="no" style="background-color:#ED839D;">
+					<font face=Tahoma size=1 color=#00000f>TROPICAL 14:#ED839D <b>Refactorizar</b></font>
+				</div>
+				<div id=15 class="Dragable" selectable="no" style="background-color:#FFE474;">
+					<font face=Tahoma size=1 color=#00000f>TROPICAL 15:#FFE474 <b>Aplicar</b></font>
+				</div>
+				 -->
+				
+				<!-- <div id=16 class="Dragable" selectable="no" style="background-color:#CDDD73;">
+					<font face=Tahoma size=1 color=#00000f>Emplematico 1:<b>Partiendo por uno mismo</b></font>
+				</div>
+				<div id=17 class="Dragable" selectable="no" style="background-color:#F35F6D;">
+					<font face=Tahoma size=1 color=#00000f>Emplematico 2:<b>Plataforma Computacional (Marcelo)</b></font>
+				</div>
+				<div id=18 class="Dragable" selectable="no" style="background-color:#FAA457;">
+					<font face=Tahoma size=1 color=#00000f>Emplematico 3:<b>Dominio : Hosting (Gonzalo)</b></font>
+				</div>
+				<div id=19 class="Dragable" selectable="no" style="background-color:#35BEB7;">
+					<font face=Tahoma size=1 color=#00000f>Emplematico 4:<b>Presentación : Audiencia Profesional (Linkedin)</b></font>
+				</div>
+				<div id=20 class="Dragable" selectable="no" style="background-color:#D18989;">
+					<font face=Tahoma size=1 color=#00000f>Emplematico 5:<b>Reunion : Café (Tod@s)</b></font>
+				</div>
+				<div id=21 class="Dragable" selectable="no" style="background-color:#99C7BC;">
+					<font face=Tahoma size=1 color=#00000f>Emplematico 6:<b>Generación de Aportes e Ideas (Linkedin)</b></font>
+				</div>
+				<div id=22 class="Dragable" selectable="no" style="background-color:#89B18C;">
+					<font face=Tahoma size=1 color=#00000f>Emplematico 7:<b>Aportes e Ideas (Linkedin)</b></font>
+				</div>
+				<div id=23 class="Dragable" selectable="no" style="background-color:#738FA7;">
+					<font face=Tahoma size=1 color=#00000f>Emplematico 8:<b>Generar un proyecto web</b></font>
+				</div>
+				<div id=24 class="Dragable" selectable="no" style="background-color:#8A8FA3;">
+					<font face=Tahoma size=1 color=#00000f>Emplematico 9:<b>Iterar ideas y generar aportes y directrices de cambio</b></font>
+				</div>
+				<div id=25 class="Dragable" selectable="no" style="background-color:#D189B9;">
+					<font face=Tahoma size=1 color=#00000f>Emplematico 10:<b>Evaluar constantemente el nivel de inversiones</b></font>
+				</div>
+				
+				<div id=26 class="Dragable" selectable="no" style="background-color:#F9D6AC;">
+					<font face=Tahoma size=1 color=#00000f>Agilidad & Desempleo Profesionales<b>ARTICULO Comunidad Informática</b></font>
+				</div> -->
+				<div id=27 class="Dragable" selectable="no" style="background-color:#E9B561;">
+					<font face=Tahoma size=2 color=#00000f>Agilidad & Desempleo <b>Reorganimar</b></font>
+				</div>
+				<div id=28 class="Dragable" selectable="no" style="background-color:#E89132;">
+					<font face=Tahoma size=2 color=#00000f>Agilidad & Desempleo <b>Valores</b></font>
+				</div>
+				<div id=29 class="Dragable" selectable="no" style="background-color:#DA7527;">
+					<font face=Tahoma size=2 color=#00000f>Agilidad & Desempleo <b>Donated To</b></font>
+				</div>
+				<div id=30 class="Dragable" selectable="no" style="background-color:#DEAC2F;">
+					<font face=Tahoma size=2 color=#00000f>Agilidad & Desempleo <b>KANBAN</b></font>
+				</div>
+				
+				<div id=1 class="Dragable" selectable="no" style="background-color:#E9E74A;">
+					<font face=Tahoma size=1 color=#00000f>Agilidad & Desempleo<b> OPEN Acuerdo: </b> Diseño y TDD</font>
+				</div>
+				<div id=1 class="Dragable" selectable="no" style="background-color:#E9E74A;">
+					<font face=Tahoma size=1 color=#00000f>Agilidad & Desempleo <b> OPEN Acuerdo:</b> Tiempo Codificacion: Media Jornada</font>
+				</div>
+				<div id=1 class="Dragable" selectable="no" style="background-color:#E9E74A;">
+					<font face=Tahoma size=1 color=#00000f>Agilidad & Desempleo <b> OPEN Acuerdo</b> Gestión de compromisos a partir de uno mismo</font>
+				</div>
+				<div id=1 class="Dragable" selectable="no" style="background-color:#E9E74A;">
+					<font face=Tahoma size=1 color=#00000f>Agilidad & Desempleo <b> OPEN Acuerdo</b> Financiamiento Hosting</font>
+				</div>
+				<div id=1 class="Dragable" selectable="no" style="background-color:#E9E74A;">
+					<font face=Tahoma size=1 color=#00000f>Agilidad & Desempleo <b> OPEN Acuerdo</b> Donated App </font>
+				</div>
+				<!-- <div id=31 class="Dragable" selectable="no" style="background-color:#BAB7A9;">
+					<font face=Tahoma size=1 color=#00000f>CLASSIC 31:#BAB7A9 <b>Entregado</b></font>
+				</div>
+				<div id=32 class="Dragable" selectable="no" style="background-color:#BFB4AF;">
+					<font face=Tahoma size=1 color=#00000f>CLASSIC 32:#BFB4AF <b>Testear</b></font>
+				</div>
+				<div id=33 class="Dragable" selectable="no" style="background-color:#CDC4C1;">
+					<font face=Tahoma size=1 color=#00000f>CLASSIC 33:#CDC4C1 <b>TDD</b></font>
+				</div>
+				<div id=34 class="Dragable" selectable="no" style="background-color:#E6E6E6;">
+					<font face=Tahoma size=1 color=#00000f>CLASSIC 34:#E6E6E6 <b>BDD</b></font>
+				</div>
+				<div id=35 class="Dragable" selectable="no" style="background-color:#E6E0F8;">
+					<font face=Tahoma size=1 color=#00000f>CLASSIC 35:#E6E0F8 <b>DDD</b></font>
+				</div> -->
+			</td>
+			<td width=300 align=center bgcolor=#fffccc></td>
+			<td width=300 align=center bgcolor=#fcfcfc></td>
+		</tr>
+	</table>	
+	<br />
+</div>
+</body>
+</html>

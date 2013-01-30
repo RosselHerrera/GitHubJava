@@ -1,0 +1,9 @@
+INDEX VERSION 1.126
+C:\AAA\2013\ENE\java\GitHub\GitHubJava\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\7497320.index
+\VistasGitHub\src
+C:\AAA\2013\ENE\java\GitHub\GitHubJava\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\4245803416.index
+\VistasGitHub\src
+C:\AAA\2013\ENE\java\GitHub\GitHubJava\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1466112640.index
+\VistasGitHub\src
+C:\AAA\2013\ENE\java\GitHub\GitHubJava\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3589478110.index
+\VistasGitHub\src

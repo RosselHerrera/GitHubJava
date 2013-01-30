@@ -1,0 +1,136 @@
+<!-- ©2012 mrosselh@gmail.com  -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link type=text/css rel=stylesheet media=all href=../css/kanban.css>
+<link type="text/css" rel="stylesheet" media="all" href="../css/borderound.css">
+<script type="text/javascript" src="../js/kanban.js"></script>
+<title>KANBAN::MOVETAG</title>
+</head>
+<body bgcolor=#00000f onload="OnLoad()">
+
+<div align=center>
+	<table width=1024  height=580 border=0 cellspacing=1 celpadding=1>
+		
+		<tr bgcolor=#fffcfc>
+			<td colspan=3 height=40 align=center>
+			<font face=Tahoma size=5 color=#000000><b>KANBAN BOARD  (Mueve la Etiqueta)</b></font>
+			</td>
+		</tr>
+		
+		<tr bgcolor=#fffcfc>
+			<td width=424 height=20 align=center bgcolor=#fffcfc>
+			<font face=Tahoma size=2 color=#000000><b>HISTORIAS</b> (BackLog Product)</font>
+			</td>
+			<td width=300 align=center bgcolor=#fffccc>
+			<font face=Tahoma size=2 color=#000000><b>EN CURSO</b> (WIP)</font>
+			</td>
+			<td width=300 align=center bgcolor=#fcfcfc>
+			<font face=Tahoma size=2 color=#000000><b>CERRADO</b>(Close)</font>
+			</td>
+		</tr>
+		
+		<tr>
+			<td width=424 align=center bgcolor=#fffcfc>
+			
+				<div id=1 class="Dragable" selectable="no" style="background-color:#F9A55B; border-width: 2px; border-style: dotted; border-color: #E6E0F8;">
+					<font face=Tahoma size=1 color=#00000f>CRITERIO : AgilDay2012 <br><br><b>CRITERIO ACEPTACION</b></font>
+					<br><br>
+					<div style="background-color:#FFDD2A; border-color:red; border-width: 1px; border-style:solid">
+						<font face=Tahoma size=2 color=#ff0000><b>2012-NOV-07</b></font>
+					</div>
+				</div>									   		
+				<div id=2 class="Dragable" selectable="no" style="background-color:#F9A55B; border-width: 2px; border-style: dotted; border-color: #FFDD2A;">
+					<font face=Tahoma size=1 color=#00000f><b>CRITERIO : AgilDay2012</b><br>CRITERIO ACEPTACION<br>PREPARAR DIA AGIL</font>
+					<br><br>
+					<div style="background-color:#FFDD2A; border-color:red; border-width: 1px; border-style:solid">
+						<font face=Tahoma size=2 color=#ff0000><b>26-11-2012</b></font>
+					</div>
+				</div>
+			
+				
+				<div id=3 class="Dragable" selectable="no" style="background-color:#F9A55B; border-width: 2px; border-style: dotted; border-color: #FFDD2A;">
+					<font face=Tahoma size=1 color=#00000f><b>RECEPCION</b><br>Guia Despacho<br> Factura</font>
+					<br><br>
+					<div style="background-color:#FFDD2A; border-color:red; border-width: 1px; border-style:solid">
+						<font face=Tahoma size=2 color=#ff0000><b>10-11-2012</b></font>
+					</div>
+				</div>
+			
+				
+				<div id=4 class="Dragable" selectable="no" style="background-color:#F9A55B; border-width: 2px; border-style: dotted; border-color: #FFDD2A;">
+					<font face=Tahoma size=1 color=#00000f><b>TEPUAL</b><br>Proceso<br> hsql</font>
+					<br><br>
+					<div style="background-color:#FFDD2A; border-color:red; border-width: 1px; border-style:solid">
+						<font face=Tahoma size=2 color=#ff0000><b>11-11-2012</b></font>
+					</div>
+				</div>
+			
+				
+				<div id=5 class="Dragable" selectable="no" style="background-color:#F9A55B; border-width: 2px; border-style: dotted; border-color: #FFDD2A;">
+					<font face=Tahoma size=1 color=#00000f><b>VALIDAR INGRESO</b><br>NO campos vacios<br> javascript</font>
+					<br><br>
+					<div style="background-color:#FFDD2A; border-color:red; border-width: 1px; border-style:solid">
+						<font face=Tahoma size=2 color=#ff0000><b>14-11-2012</b></font>
+					</div>
+				</div>
+			
+				
+				<div id=6 class="Dragable" selectable="no" style="background-color:#F9A55B; border-width: 2px; border-style: dotted; border-color: #FFDD2A;">
+					<font face=Tahoma size=1 color=#00000f><b>CASA</b><br>software<br> hsql</font>
+					<br><br>
+					<div style="background-color:#FFDD2A; border-color:red; border-width: 1px; border-style:solid">
+						<font face=Tahoma size=2 color=#ff0000><b>10-11-2012</b></font>
+					</div>
+				</div>
+			
+				
+				<div id=7 class="Dragable" selectable="no" style="background-color:#F9A55B; border-width: 2px; border-style: dotted; border-color: #FFDD2A;">
+					<font face=Tahoma size=1 color=#00000f><b>CASA</b><br>Reunion Lunes 12<br> Preparar Día Agil</font>
+					<br><br>
+					<div style="background-color:#FFDD2A; border-color:red; border-width: 1px; border-style:solid">
+						<font face=Tahoma size=2 color=#ff0000><b>12-11-2012</b></font>
+					</div>
+				</div>
+			
+				
+				<div id=8 class="Dragable" selectable="no" style="background-color:#F9A55B; border-width: 2px; border-style: dotted; border-color: #FFDD2A;">
+					<font face=Tahoma size=1 color=#00000f><b>CASA</b><br>Incorporar HSQL<br> Preparar Día Agil</font>
+					<br><br>
+					<div style="background-color:#FFDD2A; border-color:red; border-width: 1px; border-style:solid">
+						<font face=Tahoma size=2 color=#ff0000><b>10-11-2012</b></font>
+					</div>
+				</div>
+			
+				
+				<div id=9 class="Dragable" selectable="no" style="background-color:#F9A55B; border-width: 2px; border-style: dotted; border-color: #FFDD2A;">
+					<font face=Tahoma size=1 color=#00000f><b>CASA</b><br>Proceso<br> javascript</font>
+					<br><br>
+					<div style="background-color:#FFDD2A; border-color:red; border-width: 1px; border-style:solid">
+						<font face=Tahoma size=2 color=#ff0000><b>10-11-2012</b></font>
+					</div>
+				</div>
+			
+				
+				<div id=10 class="Dragable" selectable="no" style="background-color:#F9A55B; border-width: 2px; border-style: dotted; border-color: #FFDD2A;">
+					<font face=Tahoma size=1 color=#00000f><b>TEPUAL</b><br>Incorporar HSQL<br> Formulario Ventas</font>
+					<br><br>
+					<div style="background-color:#FFDD2A; border-color:red; border-width: 1px; border-style:solid">
+						<font face=Tahoma size=2 color=#ff0000><b>11-11-2012</b></font>
+					</div>
+				</div>
+			</td>
+			<td width=300 align=center bgcolor=#fffccc></td>
+			<td width=300 align=center bgcolor=#fcfcfc></td>
+		</tr>
+		
+	</table>	
+	<br />
+</div>
+
+
+
+
+
+</body>
+</html>
